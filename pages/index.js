@@ -1,12 +1,38 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import Modal from "../components/Modal";
 
 import states from "../data/states.json";
+import useToggle from "../hooks/useToggle";
 
 export default function Home() {
+  const [data, setData] = useState({});
+  const [isOpen, closeModal, openModal] = useToggle();
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.salutation.value);
+    const {
+      salutation,
+      firstName,
+      lastName,
+      number,
+      email,
+      state,
+      exchangeCar,
+      privacyPolicy,
+    } = e.target;
+    const payload = {
+      fullName: `${salutation.value} ${firstName.value} ${lastName.value}`,
+      mobileNumber: number.value,
+      email: email.value,
+      state: state.value,
+      isExchangeCar: exchangeCar.checked,
+      isPrivacyPolicy: privacyPolicy.checked,
+    };
+    setData(payload);
+    e.target.reset();
+    openModal();
   }
   return (
     <div>
@@ -17,6 +43,7 @@ export default function Home() {
       </Head>
 
       <main>
+        <Modal isOpen={isOpen} closeModal={closeModal} data={data} />
         <h1 className='text-4xl text-center p-3 bg-black text-white font-extrabold'>
           Jeep
         </h1>
@@ -103,10 +130,9 @@ export default function Home() {
                         required
                         id='grid-state'
                       >
-                        <option value='Ms.' selected>
-                          Ms.
-                        </option>
-                        <option>Mr.</option>
+                        {["Mr.", "Mrs.", "Ms."].map((name) => (
+                          <option key={name}>{name}</option>
+                        ))}
                       </select>
                       <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-800'>
                         <svg
@@ -128,15 +154,13 @@ export default function Home() {
                       <span className='text-red-500'>&nbsp;*</span>{" "}
                     </label>
                     <input
-                      className='appearance-none block w-full bg-white text-gray-800 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+                      required
+                      className='appearance-none block w-full bg-white text-gray-800 border border-gray-400 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
                       id='grid-first-name'
                       type='text'
                       name='firstName'
-                      placeholder='Jane'
+                      placeholder='First Name'
                     />
-                    <p className='text-red-500 text-sm italic'>
-                      Please fill out this field.
-                    </p>
                   </div>
                   <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                     <label
@@ -147,6 +171,7 @@ export default function Home() {
                       <span className='text-red-500'>&nbsp;*</span>{" "}
                     </label>
                     <input
+                      required
                       className='appearance-none block w-full bg-white text-gray-800 border border-gray-400 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                       id='grid-last-name'
                       type='text'
@@ -163,10 +188,11 @@ export default function Home() {
                       <span className='text-red-500'>&nbsp;*</span>{" "}
                     </label>
                     <input
+                      required
                       className='appearance-none block w-full bg-white text-gray-800 border border-gray-400 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                       id='grid-last-name'
                       type='text'
-                      placeholder='Doe'
+                      placeholder='Number'
                       name='number'
                     />
                   </div>
@@ -181,10 +207,12 @@ export default function Home() {
                       <span className='text-red-500'>&nbsp;*</span>{" "}
                     </label>
                     <input
+                      required
                       className='appearance-none block w-full bg-white text-gray-800 border border-gray-400 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                       id='grid-email'
                       type='email'
                       name='email'
+                      placeholder='Email Address'
                     />
                   </div>
                 </div>
@@ -217,8 +245,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className='flex items-center space-x-2 mt-2'>
+                <div className='flex items-center space-x-2 px-3 mt-2'>
                   <input
+                    required
                     type='checkbox'
                     id=''
                     className='inline-block w-4 h-4'
@@ -228,8 +257,9 @@ export default function Home() {
                     I would like to exchange my car.
                   </p>
                 </div>
-                <div className='flex items-center space-x-2 mt-2'>
+                <div className='flex items-center space-x-2 px-3 mt-2'>
                   <input
+                    required
                     type='checkbox'
                     name='privacyPolicy'
                     id=''
@@ -244,7 +274,7 @@ export default function Home() {
                 </div>
                 <button
                   type='submit'
-                  className='bg-yellow-500 text-black font-extrabold px-6 py-2 mt-6 text-lg uppercase rounded duration-300 hover:brightness-90'
+                  className='bg-yellow-500 text-black font-extrabold px-6 ml-3 py-2 mt-6 text-lg uppercase rounded duration-300 hover:brightness-90'
                 >
                   Submit &gt;
                 </button>
