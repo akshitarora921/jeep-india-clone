@@ -56,9 +56,9 @@ export default function Home() {
               objectFit='cover'
             />
           </div>
-          <p className='-rotate-90 z-10 text-white/50 text-xs absolute bottom-32'>
+          {/* <p className='-rotate-90 z-10 text-white/50 text-xs absolute bottom-32 xxl:hidden'>
             <sup className='text-xs'>*</sup> T&C apply
-          </p>
+          </p> */}
           <div className='flex flex-col text-white bg-black md:bg-black/70 z-10 w-full md:w-2/4 p-8 h-min my-auto md:ml-16'>
             <h3 className='text-2xl font-light uppercase'>
               The new jeep<sub className='text-xs'>®</sub> compass
