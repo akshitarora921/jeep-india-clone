@@ -89,7 +89,7 @@ export default function Home() {
             safe environment for your visit. The showroom and all our test drive
             vehicles are properly sanitized for a safe test drive.
           </p>
-          <div className='flex flex-col md:flex-row gap-16 w-full mt-5 md:px-28'>
+          <div className='flex flex-col md:flex-row justify-center gap-16 w-full mt-5 md:px-28'>
             <div className='flex flex-col'>
               <p className='uppercase text-gray-500'>compass</p>
               <div className='relative border mt-3'>
