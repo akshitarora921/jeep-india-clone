@@ -20,8 +20,8 @@ export default function Home() {
         <h1 className='text-4xl text-center p-3 bg-black text-white font-extrabold'>
           Jeep
         </h1>
-        <div className='flex h-[600px]'>
-          <div className='absolute h-[600px] w-full object-cover'>
+        <div className='flex flex-col md:flex-row h-[600px] relative'>
+          <div className='relative md:absolute h-[600px] w-full object-cover'>
             <Image
               src='/images/jeep-bg.jpg'
               layout='fill'
@@ -29,14 +29,17 @@ export default function Home() {
               objectFit='cover'
             />
           </div>
-          <div className='flex flex-col text-white bg-black/70 z-10 w-2/4 p-8 h-min  my-auto ml-16'>
+          <p className='-rotate-90 z-10 text-white/50 text-xs absolute bottom-32'>
+            <sup className='text-xs'>*</sup> T&C apply
+          </p>
+          <div className='flex flex-col text-white bg-black md:bg-black/70 z-10 w-full md:w-2/4 p-8 h-min my-auto md:ml-16'>
             <h3 className='text-2xl font-light uppercase'>
               The new jeep<sub className='text-xs'>®</sub> compass
             </h3>
-            <h1 className='text-4xl font-bold uppercase'>
+            <h1 className='text-2xl md:text-4xl font-bold uppercase'>
               this is it, your dream suv.
             </h1>
-            <p className='mt-4'>
+            <p className='mt-4 text-sm md:text-md'>
               Stand out when you step out with an SUV that’s built to be
               legendary. The JeepCompass is an adventurer’s paradise – compact
               yet spacious, fierce yet luxurious. Come, experience its 4x4
@@ -49,23 +52,23 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center mt-4'>
-          <h1 className='text-4xl text-center font-bold uppercase text-[#333]'>
+        <div className='flex flex-col justify-center items-center mt-4 px-2 md:px-0'>
+          <h1 className='text-2xl md:text-4xl  text-center font-bold uppercase text-[#333]'>
             BOOK A TEST DRIVE - NEW COMPASS & WRANGLER UNLIMITED
           </h1>
-          <p className='mt-4 text-gray-500 text-center w-3/6'>
+          <p className='mt-4 text-gray-500 text-center w-full md:w-4/6'>
             In light of the current situation, we would like to assure you that
             our dealerships are taking all the necessary precautions to create a
             safe environment for your visit. The showroom and all our test drive
             vehicles are properly sanitized for a safe test drive.
           </p>
-          <div className='flex gap-16 w-full mt-5 px-28'>
+          <div className='flex flex-col md:flex-row gap-16 w-full mt-5 md:px-28'>
             <div className='flex flex-col'>
               <p className='uppercase text-gray-500'>compass</p>
               <div className='relative border mt-3'>
                 <Image
                   src='/images/jeep-car.jpg'
-                  height={300}
+                  height={350}
                   width={600}
                   alt='background cover'
                   objectFit='contain'
@@ -85,7 +88,7 @@ export default function Home() {
                 className='w-full max-w-lg mx-auto my-5'
                 onSubmit={handleSubmit}
               >
-                <div className='flex flex-wrap  mb-6'>
+                <div className='flex flex-wrap mb-6'>
                   <div className='w-full md:w-1/2 px-3'>
                     <label
                       className='block uppercase tracking-wide text-gray-800 text-sm font-extrabold mb-2'
@@ -135,7 +138,7 @@ export default function Home() {
                       Please fill out this field.
                     </p>
                   </div>
-                  <div className='w-full md:w-1/2 px-3'>
+                  <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                     <label
                       className='block uppercase tracking-wide text-gray-800 text-sm font-extrabold mb-2'
                       htmlFor='grid-last-name'
